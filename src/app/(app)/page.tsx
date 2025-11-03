@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
-import { Newspaper, Users, MessageSquare, FileText } from "lucide-react";
+import { Newspaper, Users, MessageSquare, FileText, Bot } from "lucide-react";
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -17,6 +17,14 @@ export default function HomePage() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'news-2');
 
   const navItems = [
+    {
+      href: "/ai-chat",
+      icon: Bot,
+      title: "AI 问答",
+      description: "智能助手，解答你的各种问题。",
+      color: "bg-rose-100 dark:bg-rose-900/50",
+      textColor: "text-rose-600 dark:text-rose-400"
+    },
     {
       href: "/news",
       icon: Newspaper,
@@ -30,8 +38,8 @@ export default function HomePage() {
       icon: FileText,
       title: "校园帖子",
       description: "看看正在发生什么，分享你的瞬间。",
-       color: "bg-green-100 dark:bg-green-900/50",
-       textColor: "text-green-600 dark:text-green-400"
+      color: "bg-green-100 dark:bg-green-900/50",
+      textColor: "text-green-600 dark:text-green-400"
     },
     {
       href: "/social",
@@ -59,13 +67,13 @@ export default function HomePage() {
           className="relative rounded-xl border bg-card text-card-foreground shadow-lg w-full p-8 md:p-12 overflow-hidden"
         >
           {heroImage && (
-             <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                fill
-                className="object-cover z-0"
-                data-ai-hint={heroImage.imageHint}
-             />
+            <Image
+              src={heroImage.imageUrl}
+              alt={heroImage.description}
+              fill
+              className="object-cover z-0"
+              data-ai-hint={heroImage.imageHint}
+            />
           )}
           <div className="absolute inset-0 bg-black/50 z-10" />
           <div className="relative z-20 flex flex-col items-start text-white">
@@ -80,7 +88,7 @@ export default function HomePage() {
               <Card className="h-full flex flex-col hover:shadow-xl hover:-translate-y-1 transition-transform duration-300">
                 <CardHeader>
                   <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${item.color}`}>
-                     <item.icon className={`w-6 h-6 ${item.textColor}`} />
+                    <item.icon className={`w-6 h-6 ${item.textColor}`} />
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">

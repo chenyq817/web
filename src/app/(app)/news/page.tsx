@@ -56,21 +56,25 @@ const NewsCard = ({ item }: { item: typeof newsItems[0] }) => {
 };
 
 export default function NewsPage() {
+  const allNews = newsItems;
   const academicNews = newsItems.filter(item => item.category === '学术');
   const sportsNews = newsItems.filter(item => item.category === '体育');
   const campusLifeNews = newsItems.filter(item => item.category === '校园生活' || item.category === "文体艺术");
+  const otherNews = newsItems.filter(item => item.category === '其他');
 
   return (
     <div className="flex flex-col h-full">
       <Header title="校园新闻" />
       <main className="flex-1 p-4 md:p-6 lg:p-8">
-        <Tabs defaultValue="academics" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+        <Tabs defaultValue="all" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-6">
+            <TabsTrigger value="all">全部</TabsTrigger>
             <TabsTrigger value="academics">学术</TabsTrigger>
             <TabsTrigger value="sports">体育</TabsTrigger>
             <TabsTrigger value="campus-life">校园生活</TabsTrigger>
+            <TabsTrigger value="other">其他</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="academics">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {academicNews.length > 0 ? academicNews.map((item) => <NewsCard key={item.id} item={item} />) : <p className="text-center text-muted-foreground col-span-full">暂无学术新闻。</p>}
@@ -84,6 +88,16 @@ export default function NewsPage() {
           <TabsContent value="campus-life">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {campusLifeNews.length > 0 ? campusLifeNews.map((item) => <NewsCard key={item.id} item={item} />) : <p className="text-center text-muted-foreground col-span-full">暂无校园生活新闻。</p>}
+            </div>
+          </TabsContent>
+          <TabsContent value="all">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {allNews.length > 0 ? allNews.map((item) => <NewsCard key={item.id} item={item} />) : <p className="text-center text-muted-foreground col-span-full">暂无新闻。</p>}
+            </div>
+          </TabsContent>
+          <TabsContent value="other">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {otherNews.length > 0 ? otherNews.map((item) => <NewsCard key={item.id} item={item} />) : <p className="text-center text-muted-foreground col-span-full">暂无其他新闻。</p>}
             </div>
           </TabsContent>
         </Tabs>
