@@ -1,85 +1,297 @@
-# 豫园回声 - 校园社交圈
+# iKnowHUST - 华科校园智能信息平台
 
-这是一个在 Firebase Studio 中构建的 Next.js 入门项目，旨在成为一个多功能一体的校园伴侣应用。它包含了社交发帖、好友管理、私人聊天、社区墙和新闻订阅等功能。
+**iKnowHUST** 是一个专为华中科技大学学生打造的校园信息聚合与智能问答平台。我们旨在解决校园信息分散、获取效率低下的问题，通过AI技术为学生提供一站式、个性化的校园生活服务。
+
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.3-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.3.1-blue)](https://reactjs.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-11.9.1-orange)](https://firebase.google.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-38B2AC)](https://tailwindcss.com/)
+
+---
 
 ## 功能特性
 
-- **仪表盘 (Dashboard)**：一个集中的信息中心，用于展示校园新闻并提供各项功能的快速入口。
-- **校园帖子 (Campus Posts)**：一个时间线，用户可以在此分享文字和图片。
-- **社交中心 (Social Hub)**：查找和管理好友、发送好友请求并发起聊天。
-- **私人聊天 (Private Chat)**：与好友进行实时的一对一私信，支持发送图片和表情符号。
-- **社区墙 (Community Wall)**：一个公共空间，可以为所有人留下有趣的短消息。
-- **新闻订阅 (News Feed)**：按“学术”、“体育”和“校园生活”分类，随时了解最新的校园新闻。
-- **用户资料 (User Profiles)**：可定制的用户个人资料，包括头像和个人信息。
-- **管理后台 (Admin Dashboard)**：一个供管理员用户进行内容审核的特殊板块。
+### 智能问答系统
+- **AI驱动**: 基于Google Gemini AI大模型，提供智能校园问答服务
+- **自然语言处理**: 支持自然语言查询，理解学生问题意图
+- **问答历史**: 保存用户问答记录，提供个性化服务
+- **问题分类**: 自动识别问题类型，提供精准回答
 
-## 本地开发环境设置
+### 新闻信息聚合
+- **多源聚合**: 整合校园官网、教务处、各院系通知
+- **智能分类**: 学术、体育、校园生活等分类展示
+- **实时更新**: 自动抓取最新校园资讯
+- **搜索功能**: 支持关键词搜索和筛选
 
-要在您的本地计算机上运行此项目，请按照以下步骤操作。
+### 社交互动平台
+- **实时聊天**: 支持一对一和群组聊天
+- **消息管理**: 消息状态显示、历史记录保存
+- **好友系统**: 用户社交、好友管理功能
+- **社区发帖**: 内容发布、评论互动
 
-### 1. 先决条件
+### 现代化界面
+- **响应式设计**: 完美适配桌面和移动端
+- **组件化架构**: 基于Radix UI的可复用组件
+- **主题系统**: 支持明暗主题切换
+- **无障碍访问**: 符合WCAG标准的无障碍设计
 
-- [Node.js](https://nodejs.org/) (推荐 v18 或更高版本)
-- [npm](https://www.npmjs.com/) (通常随 Node.js 一起安装)
+---
 
-### 2. 安装项目依赖
+## 技术栈
 
-这是**最重要的一步**。在项目根目录下，打开您的命令行工具，然后运行以下命令来安装所有必需的软件包：
+### 前端技术
+- **框架**: Next.js 15.3.3 (App Router)
+- **UI库**: React 18.3.1 + Radix UI
+- **样式**: Tailwind CSS + CSS Modules
+- **状态管理**: React Context + Hooks
+- **类型检查**: TypeScript 5.0
+
+### 后端服务
+- **数据库**: Firebase Firestore
+- **认证**: Firebase Authentication
+- **存储**: Firebase Storage
+- **AI服务**: Google Gemini AI (Genkit)
+- **实时通信**: Firebase Realtime Database
+
+### 开发工具
+- **包管理**: npm
+- **代码规范**: ESLint + Prettier
+- **版本控制**: Git
+- **部署**: Vercel (推荐)
+
+---
+
+## 快速开始
+
+### 环境要求
+- Node.js 18.0.0 或更高版本
+- npm 8.0.0 或更高版本
+- Git
+
+### 安装步骤
+
+1. **克隆项目**
+   ```bash
+   git clone https://gitee.com/abigpigishere/hust_se_project.git
+   cd hust_se_project/code
+   ```
+
+2. **安装依赖**
+   ```bash
+   npm install
+   ```
+
+3. **配置环境变量**
+   
+   在 `code` 目录下创建 `.env.local` 文件：
+   ```bash
+   # Firebase 配置
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+   
+   # Google AI 配置
+   GEMINI_API_KEY=your_gemini_api_key
+
+   # 华中大 AI 问答代理配置
+   # 若未提供，服务将无法访问校内 AI 接口
+   HUST_AI_API_URL=https://ai.hust.edu.cn/proxy/chatai-session/agent/sseProxy/chat_query
+   HUST_AI_APP_ID=143
+   HUST_AI_BEARER_TOKEN=your_portal_bearer_token
+   HUST_AI_COOKIE=BIGipServerpool-wxb-aiportal=...; SESSION=...
+   HUST_AI_REFERER=https://ai.hust.edu.cn/chat/bots/hust-bot
+   HUST_AI_DEFAULT_USER_ID=portal_your_student_id
+   HUST_AI_DEFAULT_CONVERSATION_ID=d3tj2pm60uuv4qighitg
+   ```
+
+   > **提示**：服务端会固定使用 `HUST_AI_DEFAULT_USER_ID` 与华中大 AI 服务通信，以匹配凭证身份，前端传入的 `userId` 将被忽略。
+
+   > **安全提示**: `HUST_AI_BEARER_TOKEN` 与 `HUST_AI_COOKIE` 均属于敏感凭证，请务必仅在本地 `.env.local` 中配置，切勿提交到版本库。
+
+4. **运行开发服务器**
+   ```bash
+   npm run dev
+   ```
+   
+   访问 [http://localhost:9002](http://localhost:9002) 查看应用
+
+### 多标签页同时登录不同账号
+
+项目现已默认使用 **浏览器会话级别的 Firebase Auth 持久化**。这意味着：
+
+- 同一浏览器中打开多个标签页时，每个标签页都可以独立登录不同账号；
+- 刷新标签页不会丢失当前登录状态，但关闭标签页或浏览器后会话即被清除；
+- 如果需要恢复原先“全局共享登录状态”的行为，可在自定义构建中将 `code/src/firebase/index.ts` 中的持久化策略改回 `browserLocalPersistence`。
+
+对于需要同时运营多个账号（如测试或运营场景）而言，只需在不同标签页或浏览器窗口中访问应用并分别登录即可，无需额外配置。
+
+### 可用脚本
 
 ```bash
-npm install
+# 开发模式
+npm run dev
+
+# 构建生产版本
+npm run build
+
+# 启动生产服务器
+npm run start
+
+# 代码检查
+npm run lint
+
+# 类型检查
+npm run typecheck
+
+# AI开发模式
+npm run genkit:dev
 ```
-> **注意**: 必须先成功运行此命令，否则后续步骤会因找不到 `next` 等命令而失败。
 
-### 3. 环境变量
+---
 
-本项目使用 Google 的生成式 AI (Gemini) 功能，因此需要一个 API 密钥。
+## 团队成员
 
-1.  在您的项目根目录下创建一个名为 `.env.local` 的新文件。
-2.  从 [Google AI Studio](https://aistudio.google.com/app/apikey) 获取一个 `GEMINI_API_KEY`。
-3.  将此密钥添加到您的 `.env.local` 文件中，格式如下：
+| 姓名 | 学号 | 角色 | 主要职责 |
+|------|------|------|----------|
+| **陈戈*** | U202315681 | 队长 & 架构/后端负责人 | 系统架构设计、后端开发、项目管理 |
+| **赵煦** | U202315713 | 前端核心功能开发 | 前端核心功能实现、用户界面开发 |
+| **陈永琪** | U202315682 | 前端组件与UI/UX & 测试 | UI组件开发、用户体验设计、系统测试 |
+| **胡智涵** | U202315687 | AI功能 & 后端 | AI功能开发、后端服务、数据处理 |
 
-    ```
-    GEMINI_API_KEY=your_api_key_here
+---
 
-    # 华中大 AI 问答代理配置
-    HUST_AI_API_URL=https://ai.hust.edu.cn/proxy/chatai-session/agent/sseProxy/chat_query
-    HUST_AI_APP_ID=143
-    HUST_AI_BEARER_TOKEN=your_portal_bearer_token
-    HUST_AI_COOKIE=BIGipServerpool-wxb-aiportal=...; SESSION=...
-    HUST_AI_REFERER=https://ai.hust.edu.cn/chat/bots/hust-bot
-    HUST_AI_DEFAULT_USER_ID=portal_your_student_id
-    HUST_AI_DEFAULT_CONVERSATION_ID=d3tj2pm60uuv4qighitg
-    HUST_AI_USER_AGENT=Mozilla/5.0 (...) Chrome/140.0.0.0 Safari/537.36
-    HUST_AI_ACCEPT_LANGUAGE=zh-CN,zh;q=0.9
-    HUST_AI_ORIGIN=https://ai.hust.edu.cn
-    HUST_AI_EXTRA_HEADERS={"sec-ch-ua":"\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"macOS\""}
-    ```
+## 项目结构
 
-    > **提示**：后端会始终使用 `HUST_AI_DEFAULT_USER_ID` 与上游服务交互，以确保凭证与用户身份匹配，前端传入的 `userId` 不再影响上游请求。
+```
+hust_se_project/
+├── code/                           # 项目源代码 (Next.js 应用)
+│   ├── src/                        # 主要源代码目录
+│   │   ├── app/                    # Next.js App Router, 页面和路由
+│   │   │   ├── (app)/              # 应用页面组
+│   │   │   │   ├── admin/          # 管理员页面
+│   │   │   │   ├── chat/           # 聊天功能页面
+│   │   │   │   ├── community/     # 社区页面
+│   │   │   │   ├── news/          # 新闻页面
+│   │   │   │   ├── post/          # 发帖页面
+│   │   │   │   ├── profile/       # 用户资料页面
+│   │   │   │   └── social/        # 社交页面
+│   │   │   └── login/              # 登录页面
+│   │   ├── components/             # 可复用的React组件
+│   │   │   ├── ui/                 # 基础UI组件
+│   │   │   └── layout/             # 布局组件
+│   │   ├── firebase/               # Firebase相关配置和逻辑
+│   │   ├── hooks/                  # 自定义React Hooks
+│   │   ├── lib/                    # 公共函数和工具库
+│   │   └── ai/                     # AI功能相关代码
+│   ├── public/                     # 静态资源
+│   ├── package.json                # 项目依赖和脚本
+│   ├── next.config.ts              # Next.js 配置文件
+│   ├── tailwind.config.ts          # Tailwind CSS 配置
+│   └── tsconfig.json               # TypeScript 配置
+├── docs/                           # 项目文档
+│   ├── 软件设计报告.md             # 系统设计文档
+│   ├── 需求规格说明报告.md         # 需求分析文档
+│   ├── 项目任务分解总表_7周.md     # 项目管理文档
+│   └── NABCD.md                    # NABCD分析文档
+├── images/                         # 项目图片资源
+│   └── NABCD分析.png               # NABCD分析思维导图
+├── .gitignore                      # Git忽略配置
+└── README.md                       # 项目说明文件
+```
 
-    > **注意**: 请勿将校内凭证提交到代码仓库，仅在本地 `.env.local` 中保存。
+---
 
-### 4. 运行开发服务器
+## 项目文档
 
-安装完依赖并设置好环境变量后，您就可以运行本地开发服务器了：
+### 核心文档
+- **[软件设计报告](./docs/软件设计报告.md)** - 详细的系统架构和设计文档
+- **[需求规格说明报告](./docs/需求规格说明报告.md)** - 完整的功能需求和非功能需求
+- **[项目任务分解总表](./docs/项目任务分解总表_7周.md)** - 7周项目计划和任务分配
+- **[NABCD分析](./docs/NABCD.md)** - 项目需求分析思维导图
 
+### 项目特色
+- **现代化技术栈**: Next.js 15 + React 18 + TypeScript
+- **AI智能集成**: Google Gemini AI 驱动的智能问答
+- **实时通信**: Firebase 实时数据库支持
+- **响应式设计**: 完美适配各种设备
+- **组件化架构**: 高度可复用的UI组件
+
+---
+
+## 部署指南
+
+### 本地开发
 ```bash
+# 克隆项目
+git clone https://gitee.com/abigpigishere/hust_se_project.git
+cd hust_se_project/code
+
+# 安装依赖
+npm install
+
+# 配置环境变量
+cp .env.example .env.local
+
+# 启动开发服务器
 npm run dev
 ```
 
-这将在 `http://localhost:9003` 上启动应用程序。
+### 生产部署
+```bash
+# 构建生产版本
+npm run build
 
-### 5. Firebase 连接
+# 启动生产服务器
+npm run start
+```
 
-该项目已预先配置好与一个 Firebase 项目的连接。连接详细信息位于 `src/firebase/config.ts`。当您在本地运行应用时，它将读写指定 Firebase 项目中的数据。您可以直接在 [Firebase 控制台](https://console.firebase.google.com/) 中查看这些数据。
+### 推荐部署平台
+- **Vercel**: 最佳Next.js部署平台
+- **Netlify**: 静态站点部署
+- **Firebase Hosting**: 与Firebase服务集成
 
-## 可用脚本
+---
 
-以下是 `package.json` 中定义的主要脚本：
+## 贡献指南
 
-- `npm run dev`: 启动 Next.js 开发服务器。
-- `npm run build`: 为生产环境构建应用程序。
-- `npm run start`: 在构建后启动生产服务器。
-- `npm run lint`: 运行 ESLint 检查代码质量问题。
-- `npm run typecheck`: 运行 TypeScript 编译器检查类型错误。
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开 Pull Request
+
+---
+
+## 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+
+---
+
+## 联系我们
+
+- **项目地址**: [https://gitee.com/abigpigishere/hust_se_project](https://gitee.com/abigpigishere/hust_se_project)
+- **问题反馈**: 请在 Issues 中提交问题
+- **功能建议**: 欢迎提交 Feature Request
+
+---
+
+## iKnowHUST 项目 NABCD 分析
+
+下面是我们项目的 NABCD 分析思维导图：
+
+![NABCD 思维导图](./images/NABCD分析.png)
+
+---
+
+<div align="center">
+
+**如果这个项目对您有帮助，请给我们一个 Star！**
+
+Made with ❤️ by iKnowHUST Team
+
+</div>
