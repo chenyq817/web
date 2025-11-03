@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
         '*.firebase.app',
         '*.cloud.run',
         'localhost:9002',
+        'iknowhust.online'
       ],
     },
   },
