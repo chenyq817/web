@@ -20,8 +20,12 @@ const roboto = Roboto({
 
 
 export const metadata: Metadata = {
-  title: 'Yu Garden Echo',
-  description: 'A campus life companion app.',
+  title: 'I know hust',
+  description: '华科校园生活伴侣',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
 };
 
 export default function RootLayout({
